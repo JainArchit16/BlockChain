@@ -79,7 +79,7 @@ app.get("/getReviews/:website", async (req, res) => {
   }
 });
 
-const port = 3000;
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
-  console.log("API server is listening on port 3000");
+  console.log("API server is listening on port");
 });
