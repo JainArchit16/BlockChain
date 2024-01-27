@@ -6,7 +6,7 @@ const contractAddress = process.env.CONTRACT_ADDRESS;
 
 // console.log(ethers.JsonRpcProvider());
 const provider = new ethers.JsonRpcProvider(API_URL);
-
+const cors = require("cors");
 const signer = new ethers.Wallet(PRIVATE_KEY, provider);
 const { abi } = require("./src/RatingAndReviewSystem.json");
 
@@ -15,6 +15,7 @@ const contract = new ethers.Contract(contractAddress, abi, signer);
 const express = require("express");
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // console.log(contract.getAverageRating());
 
@@ -23,7 +24,7 @@ app.use(express.json());
 //     const { website, rating, reviewText } = req.body;
 
 //     // Call the Ethereum contract method
-//     const result = await contract.methods
+//     const result = await contract
 //       .addReview(website, rating, reviewText)
 //       .send({ from: "YOUR_SENDER_ADDRESS" });
 
